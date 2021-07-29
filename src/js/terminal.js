@@ -14,6 +14,7 @@ let prompt = ansiColor("4e9a06", "⮞ ");
 const term = new Terminal({
     cursorBlink: true,
     cursorStyle: "underline",
+    fontFamily: "DroidSansMono",
 });
 const fitaddon = new FitAddon();
 term.open(getID("terminal-body"));
