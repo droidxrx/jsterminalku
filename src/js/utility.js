@@ -19,9 +19,11 @@ const ansiColor = (hexcolor, val) => {
     return rerunted;
 };
 
+const delthisline = () => "\u001b[2K";
+
 const getID = (idElm) => document.getElementById(idElm);
 const log = (val) => console.log(val);
 const lastArr = (arr) => arr.slice(-1)[0];
 const moveAnyArr = (arr, item) => arr.push(arr.splice(arr.indexOf(item), 1).pop());
 
-export { listmap, getID, ansiColor, log, lastArr, moveAnyArr };
+export { listmap, getID, ansiColor, log, lastArr, moveAnyArr, delthisline };
