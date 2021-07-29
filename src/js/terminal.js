@@ -14,7 +14,6 @@ let prompt = ansiColor("4e9a06", "⮞ ");
 const term = new Terminal({
     cursorBlink: true,
     cursorStyle: "underline",
-    fontFamily: "DroidSansMono",
 });
 const fitaddon = new FitAddon();
 term.open(getID("terminal-body"));
@@ -47,7 +46,7 @@ term.onKey((e) => {
             log(history_write);
         } else term.write(`\n\u001b[2K\r${prompt}`);
         curline = "";
-    } else if (ev.key in listmap.ckey) listmap.ckey[ev.key](term, curline);
+    } else if (ev.key in listmap.ckey) listmap.ckey[ev.key](term, cursorX, curline);
     else if (ev.key === "ArrowUp") {
         if (history_write.length > 0) {
             currPos > 0 && (lastpost ? (lastpost = false) : (currPos -= 1));
