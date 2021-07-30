@@ -35,18 +35,13 @@ function createTerm() {
 
         if (ev.key === "Enter") {
             if (cursorX() > 2 && curline.length > 0) {
-                if (history_write.includes(curline)) {
-                    lastArr(history_write) != curline && moveAnyArr(history_write, curline);
-                } else history_write.push(curline);
+                if (history_write.includes(curline)) lastArr(history_write) != curline && moveAnyArr(history_write, curline);
+                else history_write.push(curline);
 
                 currPos = history_write.length - 1;
-                if (["cls", "clear"].includes(curline)) {
-                    term.write(`${delthisline()}\r${prompt}`);
-                    term.clear();
-                } else term.write(`\r\n${delthisline()}${curline}\r\n${delthisline()}${prompt}`);
+                ["cls", "clear"].includes(curline) ? (term.write(`${delthisline()}\r${prompt}`), term.clear()) : term.write(`\r\n${delthisline()}${curline}\r\n${delthisline()}${prompt}`);
+
                 lastpost = true;
-                log(curline);
-                log(history_write);
             } else term.write(`\n${delthisline()}\r${prompt}`);
             curline = "";
         } else if (ev.key in listmap.ckey) listmap.ckey[ev.key](term, cursorX, curline);
