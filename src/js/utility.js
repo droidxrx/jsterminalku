@@ -1,10 +1,50 @@
-const listChart = " !@#$%^&*()_+~`|}{[]:;?><,./\\-='\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+let history_write = [],
+    curline = "",
+    currPos = 0,
+    lastpost = true;
+
 const listmap = {
-    chart: listChart,
-    ckey: {
-        Backspace: (term, cursorX, curline) => cursorX() > 2 && (term.write("\b \b"), (curline = curline.slice(0, -1))),
-        F5: () => window.location.reload(),
+    chart: " !@#$%^&*()_+~`|}{[]:;?><,./\\-='\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
+    ckey: ["Enter", "Backspace", "F5", "ArrowUp", "ArrowDown"],
+    afterckey: (keyCode, term, cursorX, prompt) => {
+        const runKey = {
+            Backspace: () => cursorX() > 2 && (term.write("\b \b"), (curline = curline.slice(0, -1))),
+            F5: () => window.location.reload(),
+            Enter: () => {
+                if (cursorX() > 2 && curline.length > 0) {
+                    if (history_write.includes(curline)) lastArr(history_write) != curline && moveAnyArr(history_write, curline);
+                    else history_write.push(curline);
+
+                    currPos = history_write.length - 1;
+                    ["cls", "clear"].includes(curline) ? (term.write(`${delthisline()}\r${prompt}`), term.clear()) : term.write(`\r\n${delthisline()}${curline}\r\n${delthisline()}${prompt}`);
+
+                    lastpost = true;
+                } else term.write(`\n${delthisline()}\r${prompt}`);
+                curline = "";
+            },
+            ArrowUp: () => {
+                if (history_write.length > 0) {
+                    currPos > 0 && (lastpost ? (lastpost = false) : (currPos -= 1));
+                    curline = history_write[currPos];
+                    term.write(`${delthisline()}\r${prompt}${curline}`);
+                }
+            },
+            ArrowDown: () => {
+                currPos += 1;
+                currPos === history_write.length && (lastpost = true);
+                if (currPos === history_write.length || history_write.length === 0) {
+                    currPos -= 1;
+                    curline = "";
+                    term.write(`${delthisline()}\r${prompt}`);
+                } else {
+                    curline = history_write[currPos];
+                    term.write(`${delthisline()}\r${prompt}${curline}`);
+                }
+            },
+        };
+        runKey[keyCode]();
     },
+    typing: (term, printable, ev, cekChart) => (printable && ev.key == "Tab" ? (term.write("    "), (curline += "    ")) : cekChart != undefined && (term.write(cekChart), (curline += cekChart))),
 };
 
 const ansiColor = (hexcolor, val) => {
@@ -16,7 +56,7 @@ const ansiColor = (hexcolor, val) => {
             B: parseInt(aRgbHex[2], 16),
         };
         return `\u001b[38;2;${aR.R};${aR.G};${aR.B}m${val}\u001b[0m`;
-    } else return log("Only six-digit hex colors are allowed.");
+    } else log("Only six-digit hex colors are allowed.");
 };
 
 const delthisline = () => "\u001b[2K";
