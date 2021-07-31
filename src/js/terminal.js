@@ -23,13 +23,18 @@ fitaddon.fit();
 term.focus();
 term.write(prompt);
 
-term.onKey((e) => {
-    const ev = e.domEvent,
-        printable = !ev.altKey && !ev.ctrlKey && !ev.metaKey,
-        cekChart = listmap.chart.find((item) => item == ev.key);
+const socket = new WebSocket("ws://localhost:8081");
+socket.onopen = () => {
+    term.onKey((e) => {
+        const ev = e.domEvent,
+            printable = !ev.altKey && !ev.ctrlKey && !ev.metaKey,
+            cekChart = listmap.chart.find((item) => item == ev.key);
 
-    if (listmap.ckey.includes(ev.key)) listmap.afterckey(ev.key, term, cursorX, prompt);
-    else listmap.typing(term, printable, ev, cekChart);
-});
+        if (listmap.ckey.includes(ev.key)) listmap.afterckey(ev.key, term, cursorX, prompt, socket);
+        else listmap.typing(term, printable, ev, cekChart);
+    });
+    socket.send(JSON.stringify({ cols: term.cols, rows: term.rows }));
+};
+socket.onmessage = (data) => term.write(data.data);
 
 window.addEventListener("resize", () => fitaddon.fit());
