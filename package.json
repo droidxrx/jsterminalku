@@ -17,8 +17,14 @@
         "start": "parcel src/index.html --port 8080",
         "build": "parcel build src/index.html -d build --no-source-maps --no-content-hash"
     },
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ]
+    },
     "license": "MIT",
     "devDependencies": {
+        "@babel/core": "^7.14.8",
         "@babel/preset-env": "^7.14.8"
     },
     "dependencies": {

@@ -33,5 +33,3 @@ term.onKey((e) => {
 });
 
 window.addEventListener("resize", () => fitaddon.fit());
-const addWindow = { listmap, term, getID, cursorX, ansiColor, log, lastArr, moveAnyArr };
-Object.assign(globalThis, addWindow);
