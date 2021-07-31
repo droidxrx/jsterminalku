@@ -19,7 +19,8 @@
     "license": "MIT",
     "scripts": {
         "start": "parcel src/index.html --port 8080",
-        "build": "parcel build src/index.html -d build --no-source-maps --no-content-hash"
+        "build": "parcel build src/index.html -d build --no-source-maps --no-content-hash",
+        "socket": "yarn node websocket.js"
     },
     "babel": {
         "presets": [
