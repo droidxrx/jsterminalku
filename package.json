@@ -18,7 +18,9 @@
         "build": "parcel build src/index.html -d build --no-source-maps --no-content-hash"
     },
     "license": "MIT",
-    "devDependencies": {},
+    "devDependencies": {
+        "@babel/preset-env": "^7.14.8"
+    },
     "dependencies": {
         "xterm": "^4.13.0",
         "xterm-addon-fit": "^0.5.0"
