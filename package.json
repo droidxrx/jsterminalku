@@ -2,8 +2,11 @@
     "name": "jsterminalku",
     "version": "1.0.0",
     "main": "src/index.html",
-    "author": "DroidXrX <droidxrx@gmail.com>",
-    "repository": "https://github.com/droidxrx/jsterminalku",
+    "author": "DroidXrX <droidxrx@gmail.com> (https://github.com/droidxrx)",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/droidxrx/jsterminalku.git"
+    },
     "homepage": "https://github.com/droidxrx",
     "keywords": [
         "terminal",
@@ -13,6 +16,7 @@
         "browser terminal",
         "websocket terminal"
     ],
+    "license": "MIT <LICENSE>",
     "scripts": {
         "start": "parcel src/index.html --port 8080",
         "build": "parcel build src/index.html -d build --no-source-maps --no-content-hash"
@@ -22,7 +26,6 @@
             "@babel/preset-env"
         ]
     },
-    "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.14.8",
         "@babel/preset-env": "^7.14.8"
