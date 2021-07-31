@@ -1,6 +1,10 @@
 @font-face {
-    font-family: "DroidSansMono";
-    src: url("./DroidSansMonoNerdFontComplete.otf");
+    font-family: "Meslo Nerd";
+    src: url("https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@master/patched-fonts/Meslo/L/Regular/complete/Meslo%20LG%20L%20Regular%20Nerd%20Font%20Complete.ttf");
+}
+@font-face {
+    font-family: "Fire Code Nerd";
+    src: url("https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf");
 }
 * {
     margin: 0;
