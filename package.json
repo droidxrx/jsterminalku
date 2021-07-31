@@ -16,7 +16,7 @@
         "browser terminal",
         "websocket terminal"
     ],
-    "license": "MIT <LICENSE>",
+    "license": "MIT",
     "scripts": {
         "start": "parcel src/index.html --port 8080",
         "build": "parcel build src/index.html -d build --no-source-maps --no-content-hash"
