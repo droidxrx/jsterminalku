@@ -9,7 +9,8 @@ terminalBody.id = "terminal-body";
 getID("container").appendChild(terminalBody);
 
 const term = new Terminal({
-    fontFamily: "DroidSansMono",
+    rendererType: "dom",
+    fontFamily: "Fire Code Nerd, courier, monospace",
     cursorBlink: true,
     cursorStyle: "underline",
 });
