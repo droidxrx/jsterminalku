@@ -1,7 +1,7 @@
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import "../../node_modules/xterm/css/xterm.css";
-import { listmap, getID, ansiColor, log, lastArr, moveAnyArr } from "./utility";
+import { listmap, getID, ansiColor } from "./utility";
 
 let prompt = ansiColor("4e9a06", "⮞ ");
 const terminalBody = document.createElement("div");
