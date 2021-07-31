@@ -6,7 +6,7 @@ let history_write = [],
 const listmap = {
     chart: " !@#$%^&*()_+~`|}{[]:;?><,./\\-='\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
     ckey: ["Enter", "Backspace", "F5", "ArrowUp", "ArrowDown"],
-    afterckey: (keyCode, term, cursorX, prompt, socket) => {
+    afterckey: (keyCode, term, cursorX, prompt, socket, isSocketOpen) => {
         const runKey = {
             Backspace: () => cursorX() > 2 && (term.write("\b \b"), (curline = curline.slice(0, -1))),
             F5: () => window.location.reload(),
@@ -18,8 +18,9 @@ const listmap = {
                     currPos = history_write.length - 1;
 
                     if (["cls", "clear"].includes(curline)) term.write(`${delthisline()}\r${prompt}`), term.clear();
-                    else socket.send("\r" + curline + "\r");
-                    //else term.write(`\r\n${delthisline()}${curline}\r\n${delthisline()}${prompt}`);
+                    else if (isSocketOpen) {
+                        socket.send(curline + "\r");
+                    } else term.write(`\r\n${delthisline()}${curline}\r\n${delthisline()}${prompt}`);
 
                     lastpost = true;
                 } else term.write(`\n${delthisline()}\r${prompt}`);

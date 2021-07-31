@@ -11,6 +11,14 @@ cd jsterminalku
 npm install or yarn
 ```
 
+## Usage
+
+```bash
+npm start or yarn start
+
+then open http://localhost:8080
+```
+
 ## License
 
 [MIT](LICENSE)
