@@ -4,8 +4,11 @@ Simple Terminal on browser via websocket, this using [XtermJS](https://github.co
 
 ## Install
 
-```
-Clone this repo LOL! then run "npm install" or "yarn"
+```bash
+git close https://github.com/droidxrx/jsterminalku.git
+cd jsterminalku
+
+npm install or yarn
 ```
 
 ## License
